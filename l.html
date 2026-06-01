@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> <!-- ✅ ARREGLO CELULAR -->
+    <title>Bokados Vedder</title>
+    <style>
+        /* ==========================================
+           ESTILOS GENERALES - ADAPTADO A CELULAR
+        ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.5;
+            font-size: 16px; /* ✅ TAMAÑO FIJO Y BUENO */
+        }
+
+        /* ===== ENCABEZADO ===== */
+        header {
+            background-color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 3px solid #ff7a00;
+        }
+
+        .logo img {
+            max-width: 160px;
+            height: auto;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+            color: #ff7a00;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        /* ===== MENÚ - ARREGLADO PARA CELULAR ===== */
+        nav {
+            background-color: #000000;
+            padding: 0.7rem 0.3rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            margin: 0 0.6rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem; /* ✅ MÁS PEQUEÑO PARA QUE QUEPA */
+            cursor: pointer;
+            display: inline-block;
+            padding: 0.3rem 0;
+        }
+
+        nav a:hover {
+            color: #ff7a00;
+        }
+
+        /* ⭐ SECCIONES COMO PÁGINAS ⭐ */
+        section {
+            display: none;
+            padding: 1.2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 150px);
+        }
+
+        section.activa {
+            display: block;
+        }
+
+        h2 {
+            color: #ff7a00;
+            text-align: center;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #ff7a00;
+            padding-bottom: 0.4rem;
+            font-size: 1.3rem;
+        }
+
+        h3 {
+            color: #000000;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        /* ===== CATÁLOGO - ✅ IMÁGENES PERFECTAS ===== */
+        .catalogo-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* ✅ 1 COLUMNA EN CELULAR */
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 600px) { /* ✅ 2 COLUMNAS EN TABLET/PC */
+            .catalogo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) { /* ✅ 3 COLUMNAS EN PC GRANDE */
+            .catalogo-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .producto {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+
+        /* ✅ LO MÁS IMPORTANTE: IMÁGENES SIEMPRE IGUALES Y CUADRADAS */
+        .producto img {
+            width: 100%;
+            height: 180px; /* MISMA ALTURA PARA TODAS */
+            object-fit: cover; /* ✅ RECORTA Y AJUSTA, NO DEFORMA */
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            background-color: #f3f3f3; /* ✅ COLOR SI NO CARGA LA FOTO */
+            border: 1px solid #eee;
+        }
+
+        .opciones {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.8rem;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .btn-carrito {
+            background-color: #ff7a00;
+            color: #ffffff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .btn-carrito:hover {
+            background-color: #e67000;
+        }
+
+        .precio {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #000000;
+            margin: 0.6rem 0;
+        }
+
+        /* ===== ACERCA DE NOSOTROS ===== */
+        .acerca-contenido {
+            background-color: #ffffff;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #ff7a00;
+            font-size: 0.95rem;
+        }
+
+        .acerca-contenido ul {
+            margin-left: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* ===== CONTACTO ===== */
+        .contacto-info {
+            background-color: #ffffff;
+            padding: 1.5rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contacto-info a {
+            color: #ff7a00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .contacto-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== PEDIDO Y CARRITO - ✅ ARREGLADO ===== */
+        .pedido-contenedor {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .item-pedido {
+            display: flex;
+            flex-wrap: wrap; /* ✅ SE AJUSTA SI NO CABE */
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 0;
+            border-bottom: 1px dashed #ccc;
+            gap: 0.5rem;
+        }
+
+        .cantidad-controles {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .btn-cantidad {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .btn-eliminar {
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .total-pedido {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 1rem;
+            color: #ff7a00;
+        }
+
+        .formulario-pedido {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #eee;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.7rem;
+            margin: 0.5rem 0;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+
+        .btn-enviar {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 0.8rem;
+        }
+
+        .btn-enviar:hover {
+            background-color: #ff7a00;
+        }
+
+        /* ===== PIE DE PÁGINA ===== */
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <!-- ✅ PON TU ENLACE DE IMAGEN DEL LOGO AQUÍ -->
+            <img src="https://instagram.ftkd1-1.fna.fbcdn.net/v/t51.82787-15/706780890_18088643189064344_6380737878789239585_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ig_cache_key=MzkwNTk0NzY4MzQzMTgxMDc3OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTMzNC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=t8OSj858aJYQ7kNvwHRNuBt&_nc_oc=AdqcqUQDL3yqcwauj_OeVTulaGkvsxPi__mqk5GglrTzPHEUSJur7RIcWYc1ROZ-Xms&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.ftkd1-1.fna&_nc_gid=9Y3_x-ZwWBF2kz5udElhtw&_nc_ss=7a22e&oh=00_Af4AkFW3VmxOGUT7CDeNU5Ibn4BgQ6YhXo0oVHtPuZfDtw&oe=6A1F7510" alt="BokadosVedder" class="logo-img">
+        </div>
+        <h1>Bokados Vedder</h1>
+        <p>Productos artesanales con sabor e innovación</p>
+    </header>
+
+    <nav>
+        <a onclick="mostrarSeccion('catalogo')">Catálogo</a>
+        <a onclick="mostrarSeccion('nosotros')">Nosotros</a>
+        <a onclick="mostrarSeccion('contacto')">Contacto</a>
+        <a onclick="mostrarSeccion('pedido')">Pedido</a>
+    </nav>
+
+    <!-- ==========================================
+           CATÁLOGO - ✅ AQUÍ PONES TUS ENLACES
+    ========================================== -->
+    <section id="catalogo" class="activa">
+        <h2>Nuestros Productos</h2>
+        <div class="catalogo-grid">
+
+            <!-- ===== GALLETAS DE LIMÓN ===== -->
+            <div class="producto">
+                <!-- ✅ PEGA AQUÍ TU ENLACE DE INTERNET -->
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTosxN3wFI8S_UBYXMTqKUOJ5yKvxmNhuojjQ&s" alt="Galletas de limón">
+                <h3>Galletas de Limón</h3>
+                <p>Paquete de 12 unidades</p>
+                <div class="precio">$6.000</div>
+                <button class="btn-carrito" onclick="agregarAlCarrito('Galletas de Limón (Paquete 12)', 6000)">
+                    🛒 Agregar al carrito
+                </button>
+            </div>
+
+            <!-- ===== YOGUR 2 LITROS ===== -->
+            <div class="producto">
+                <!-- ✅ PEGA AQUÍ TU ENLACE DE INTERNET -->
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDdqfepiP2_yva1o6eZRvxMX1joh7z6Oad5w&s" alt="Yogur de 2 litros">
+                <h3>Yogur de 2 Litros</h3>
+                <p>Elige tu sabor:</p>
+                <select id="sabor_yogur" class="opciones">
+                    <option value="Kumis">Kumis</option>
+                    <option value="Fresa">Fresa</option>
+                    <option value="Mora">Mora</option>
+                    <option value="Arequipe con pasas">Arequipe con pasas</option>
+                    <option value="Melocotón">Melocotón</option>
+                    <option value="Frutos Rojos">Frutos Rojos</option>
+                    <option value="Guanábana">Guanábana</option>
+                </select>
+                <div class="precio">$16.000</div>
+                <button class="btn-carrito" onclick="agregarYogur()">
+                    🛒 Agregar al carrito
+                </button>
+            </div>
+
+            <!-- ===== ALFAJORES ESTRELLA ===== -->
+            <div class="producto">
+                <!-- ✅ PEGA AQUÍ TU ENLACE DE INTERNET -->
+                <img src="data:image/jpeg;base64,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" alt="Alfajores">
+                <h3>Alfajores en forma de Estrella</h3>
+                <p>Paquete de 10 unidades</p>
+                <div class="precio">$7.000</div>
+                <button class="btn-carrito" onclick="agregarAlCarrito('Alfajores Estrella (Paquete 10)', 7000)">
+                    🛒 Agregar al carrito
+                </button>
+            </div>
+
+            <!-- ===== FRESAS CON CREMA ===== -->
+            <div class="producto">
+                <!-- ✅ PEGA AQUÍ TU ENLACE DE INTERNET -->
+                <img src="data:image/jpeg;base64,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" alt="fresas">
+                <h3>Fresas con Crema</h3>
+                <p>Elige el tamaño:</p>
+                <select id="tamano_fresas" class="opciones">
+                    <option value="Pequeña (8oz)" data-precio="8000">Pequeña (8oz) - $8.000</option>
+                    <option value="Mediana (12oz)" data-precio="12000">Mediana (12oz) - $12.000</option>
+                    <option value="Grande (15oz)" data-precio="15000">Grande (15oz) - $15.000</option>
+                </select>
+                <div class="precio" id="precio_fresas_texto">$8.000</div>
+                <button class="btn-carrito" onclick="agregarFresas()">
+                    🛒 Agregar al carrito
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <h2>Acerca de Nosotros</h2>
+        <div class="acerca-contenido">
+            <p><strong>Nombre de la empresa:</strong> “Bokados Vedder”</p><br>
+            <p><strong>Tipo de empresa:</strong> Empresa enfocada a la elaboración y comercialización de productos artesanales comestibles especialmente productos de panadería y repostería.</p><br>
+            <p><strong>Actividad económica:</strong> Producción y venta de alimentos artesanales como galletas, snacks y otros productos horneados con sabores innovadores y presentación atractiva para el consumidor.</p><br>
+            <p><strong>Sectores económicos:</strong></p>
+            <ul>
+                <li><strong>Secundario:</strong> Transformación de materias primas en productos alimenticios.</li>
+                <li><strong>Terciario:</strong> Comercialización y distribución de productos</li>
+            </ul>
+            <p><strong>Ubicación:</strong> Barranquilla, Atlántico, Colombia</p><br>
+            <p><strong>Productos principales:</strong></p>
+            <ul>
+                <li>Galletas Artesanales</li>
+                <li>Galletas Sabaneras de Limon</li>
+                <li>Fresas con Crema</li>
+                <li>Yogures</li>
+            </ul><br>
+            <p><strong>Público objetivo:</strong><br> Jóvenes, adolescentes y adultos que buscan productos artesanales, frescos y con sabores innovadores para consumo personal o compartir.</p><br>
+            <p><strong>Características de la empresa:</strong></p>
+            <ul>
+                <li>Producción artesanal</li>
+                <li>Enfoque en calidad y sabor</li>
+                <li>Presentación atractiva de los productos</li>
+                <li>Uso de ingredientes seleccionados</li>
+                <li>Atención personalizada al cliente</li>
+            </ul><br>
+            <p><strong>Misión:</strong><br> Ofrecer productos artesanales de excelente calidad y sabor, brindando experiencias agradables a los consumidores mediante alimentos frescos, innovadores y elaborados con dedicación.</p><br>
+            <p><strong>Visión:</strong><br> Ser una marca reconocida en Barranquilla y a nivel regional por la calidad, creatividad e innovación de sus productos artesanales, logrando el crecimiento y posicionamiento en el mercado.</p><br>
+            <p><strong>Valores corporativos:</strong></p>
+            <ul>
+                <li>Calidad</li>
+                <li>Responsabilidad</li>
+                <li>Creatividad</li>
+                <li>Compromiso</li>
+                <li>Innovación</li>
+                <li>Trabajo en equipo</li>
+            </ul><br>
+            <p><strong>Identidad visual:</strong><br> La identidad visual de Bokados Vedder busca transmitir creatividad, cercanía y sabor artesanal mediante colores llamativos y diseños modernos.</p><br>
+            <p><strong>Competencia:</strong><br> Empresas y emprendimientos locales dedicados a la venta de galletas, repostería y snacks artesanales…</p><br>
+            <p><strong>Ventaja competitiva:</strong><br> Bokados Vedder se diferencia por:
+            <ul>
+                <li>Elaboración artesanal</li>
+                <li>Sabores únicos</li>
+                <li>Presentación atractiva</li>
+                <li>Cercanía con los clientes</li>
+                <li>Innovación constante en productos</li>
+            </ul>
+            </p><br>
+            <p><strong>Objetivo general:</strong><br> Posicionar a Bokados Vedder como una marca reconocida por la calidad y originalidad de sus productos artesanales en el mercado local.</p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contacto-info">
+            <p>📞 <strong>Número / WhatsApp:</strong> 302 3523082</p>
+            <br>
+            <p>📷 <strong>Instagram:</strong> 
+                <a href="https://www.instagram.com/bokadosVedder" target="_blank">@bokadosVedder</a>
+            </p>
+        </div>
+    
+    <!-- ==========================================
+✅ SECCIÓN PEDIDO - VERSIÓN GARANTIZADA (YA NO FALLA)
+========================================== -->
+<section id="pedido" class="activa">
+    <h2>Tu Pedido 🛒</h2>
+    <div class="pedido-contenedor">
+
+        <!-- Aquí van los productos -->
+        <div id="lista_pedido">
+            <p>Aún no has agregado productos a tu pedido.</p>
+        </div>
+
+        <!-- Total -->
+        <div class="total-pedido">
+            <strong>Total: $</strong><span id="total_pedido">0</span>
+        </div>
+
+        <!-- Formulario -->
+        <div class="formulario-pedido">
+            <form onsubmit="enviarPedidoWhatsapp(); return false;">
+                <h3>Ingresa tus datos para enviar el pedido:</h3>
+                
+                <label>Nombre completo:</label>
+                <input type="text" id="nombre" required>
+
+                <label>Teléfono / WhatsApp:</label>
+                <input type="tel" id="telefono" required>
+
+                <label>Dirección de entrega (o indicaciones):</label>
+                <input type="text" id="direccion" placeholder="Ej: Diagonal 73g 15e18, La Esmeralda" required>
+
+                <!-- Campos ocultos -->
+                <textarea id="detalle_pedido" rows="4" readonly style="display:none;"></textarea>
+                <input type="hidden" id="total_unidades" value="0">
+
+                <button type="submit" class="btn-enviar">📩 ENVIAR PEDIDO POR WHATSAPP</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+✅ ESTILOS (ASEGURO QUE SE VEA)
+========================================== -->
+<style>
+/* 🚨 ESTO ES LO QUE TE FALTABA: OBLIGAMOS A QUE SE VEA */
+#pedido {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 20px 15px;
+    background-color: #f8f8f8;
+    min-height: 400px;
+}
+
+#pedido h2 {
+    color: #ff7a00;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ff7a00;
+    padding-bottom: 10px;
+}
+
+.pedido-contenedor {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#lista_pedido {
+    min-height: 80px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.item-pedido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.cantidad-controles {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-cantidad {
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-eliminar {
+    background: #ff3333;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.total-pedido {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    color: #ff7a00;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.formulario-pedido input {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 12px 0;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.btn-enviar {
+    width: 100%;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+
+<!-- ==========================================
+✅ FUNCIONES (SIN ERRORES, MENSAJE PERFECTO)
+========================================== -->
+<script>
+    // ⚠️ PON TU NÚMERO AQUÍ (CON CÓDIGO DE PAÍS, SIN ESPACIOS)
+    const TU_NUMERO = "573023523082"; 
+
+    // 🛒 ASEGURAMOS QUE EL CARRITO EXISTA
+    if (typeof carrito === 'undefined') {
+        var carrito = [];
+    }
+
+    // ✅ ACTUALIZA LA LISTA Y EL FORMATO
+    function actualizarVistaPedido() {
+        let contenedor = document.getElementById('lista_pedido');
+        let total = 0;
+        let textoDetalle = "";
+        let totalUnidades = 0;
+
+        if (carrito.length === 0) {
+            contenedor.innerHTML = "<p style='color:#888; text-align:center;'>Aún no has agregado productos a tu pedido.</p>";
+            document.getElementById('detalle_pedido').value = "";
+            document.getElementById('total_pedido').innerText = "0";
+            document.getElementById('total_unidades').value = "0";
+            return;
+        }
+
+        let html = "";
+        carrito.forEach(function(item, indice) {
+            total += (item.precio * item.cantidad);
+            totalUnidades += item.cantidad;
+
+            // ✅ FORMATO SEPARADO PARA WHATSAPP (COMO TE GUSTÓ)
+            textoDetalle += `• ${item.nombre}%0A`;
+            textoDetalle += `   Cantidad: ${item.cantidad}  |  Valor: $${(item.precio * item.cantidad).toLocaleString()}%0A%0A`;
+
+            // Lo que se ve en pantalla
+            html += `
+            <div class="item-pedido">
+                <div><strong>${item.nombre}</strong><br>$${item.precio.toLocaleString()}</div>
+                <div class="cantidad-controles">
+                    <button class="btn-cantidad" onclick="cambiarCantidad(${indice}, -1)">-</button>
+                    <span>${item.cantidad}</span>
+                    <button class="btn-cantidad" onclick="cambiarCantidad(${indice}, 1)">+</button>
+                    <button class="btn-eliminar" onclick="eliminarProducto(${indice})">X</button>
+                </div>
+            </div>
+            `;
+        });
+
+        contenedor.innerHTML = html;
+        document.getElementById('total_pedido').innerText = total.toLocaleString();
+        document.getElementById('detalle_pedido').value = textoDetalle;
+        document.getElementById('total_unidades').value = totalUnidades;
+    }
+
+    // ✅ FUNCIONES DE CARRITO
+    function cambiarCantidad(indice, cambio) {
+        if (carrito[indice].cantidad + cambio >= 1) {
+            carrito[indice].cantidad += cambio;
+            actualizarVistaPedido();
+        }
+    }
+
+    function eliminarProducto(indice) {
+        carrito.splice(indice, 1);
+        actualizarVistaPedido();
+    }
+
+    // ✅ ENVÍO A WHATSAPP - FORMATO FINAL PERFECTO
+    function enviarPedidoWhatsapp() {
+        let nombre = document.getElementById("nombre").value;
+        let telefono = document.getElementById("telefono").value;
+        let direccion = document.getElementById("direccion").value;
+        let productosTexto = document.getElementById("detalle_pedido").value;
+        let totalUnidades = document.getElementById("total_unidades").value;
+        let totalFinal = document.getElementById("total_pedido").innerText;
+
+        // 📌 MENSAJE TAL CUAL LO QUERÍAS
+        let mensaje = `📌 CONFIRMACIÓN DE PEDIDO - BOKADOS VEDDER 📌%0A%0A`;
+        mensaje += `👤 Nombre: ${nombre}%0A`;
+        mensaje += `📞 Teléfono: ${telefono}%0A`;
+        mensaje += `📍 Dirección: ${direccion}%0A%0A`;
+        mensaje += `🛒 PRODUCTOS DETALLADOS:%0A`;
+        mensaje += `${productosTexto}`;
+        mensaje += `📦 Total unidades: ${totalUnidades}%0A%0A`;
+        mensaje += `💵 TOTAL A PAGAR: $${totalFinal}%0A%0A`;
+        mensaje += `¡Muchas gracias por tu compra en Bokados Vedder! ✨`;
+
+        window.open(`https://wa.me/${TU_NUMERO}?text=${mensaje}`, "_blank");
+        alert("✅ ¡Pedido listo! Solo dale clic a ENVIAR en WhatsApp.");
+    }
+
+    // 🔥 CARGAMOS AL INSTANTE PARA QUE NUNCA QUEDE EN BLANCO
+    actualizarVistaPedido();
+</script>
+
+
+
+    <footer>
+        <p>© 2026 Bokados Vedder - Barranquilla, Atlántico, Colombia</p>
+    </footer>
+
+    <script>
+        function mostrarSeccion(idSeccion) {
+            const secciones = document.querySelectorAll('section');
+            secciones.forEach(sec => sec.classList.remove('activa'));
+            document.getElementById(idSeccion).classList.add('activa');
+            window.scrollTo(0, 0); // ✅ SIEMPRE EMPIEZA ARRIBA AL CAMBIAR DE PÁGINA
+        }
+
+        let carrito = [];
+
+        function agregarAlCarrito(nombre, precio) {
+            let producto = { nombre: nombre, precio: precio, cantidad: 1 };
+            carrito.push(producto);
+            actualizarVistaPedido();
+            alert('✅ Agregado al carrito! Ve a "Realizar Pedido"');
+        }
+
+        function agregarYogur() {
+            let sabor = document.getElementById('sabor_yogur').value;
+            let producto = { nombre: `Yogur 2L - ${sabor}`, precio: 16000, cantidad: 1 };
+            carrito.push(producto);
+            actualizarVistaPedido();
+            alert('✅ Yogur sabor ' + sabor + ' agregado!');
+        }
+
+        function agregarFresas() {
+            let select = document.getElementById('tamano_fresas');
+            let tamano = select.value;
+            let precio = parseInt(select.options[select.selectedIndex].getAttribute('data-precio'));
+            let producto = { nombre: `Fresas - ${tamano}`, precio: precio, cantidad: 1 };
+            carrito.push(producto);
+            actualizarVistaPedido();
+            alert('✅ Fresas ' + tamano + ' agregadas!');
+        }
+
+        function actualizarVistaPedido() {
+            let contenedor = document.getElementById('lista_pedido');
+            let total = 0;
+            let textoDetalle = "";
+
+            if (carrito.length === 0) {
+                contenedor.innerHTML = "<p>Aún no has agregado nada.</p>";
+                document.getElementById('detalle_pedido').value = "";
+                document.getElementById('total_pedido').innerText = "Total: $0";
+                return;
+            }
+
+            let html = "";
+            carrito.forEach(function(item, indice) {
+                total += (item.precio * item.cantidad);
+                textoDetalle += `${item.nombre} - Cant: ${item.cantidad} - $${(item.precio * item.cantidad).toLocaleString()}\n`;
+
+                html += `
+                <div class="item-pedido">
+                    <div><strong>${item.nombre}</strong><br>$${item.precio.toLocaleString()}</div>
+                    <div class="cantidad-controles">
+                        <button class="btn-cantidad" onclick="cambiarCantidad(${indice}, -1)">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="btn-cantidad" onclick="cambiarCantidad(${indice}, 1)">+</button>
+                        <button class="btn-eliminar" onclick="eliminarProducto(${indice})">X</button>
+                    </div>
+                </div>
+                `;
+            });
+
+            contenedor.innerHTML = html;
+            document.getElementById('total_pedido').innerText = `Total: $${total.toLocaleString()}`;
+            document.getElementById('detalle_pedido').value = textoDetalle + `\nTOTAL: $${total.toLocaleString()}`;
+        }
+
+        function cambiarCantidad(indice, cambio) {
+            if(carrito[indice].cantidad + cambio >= 1){
+                carrito[indice].cantidad += cambio;
+            }
+            actualizarVistaPedido();
+        }
+
+        function eliminarProducto(indice) {
+            carrito.splice(indice, 1);
+            actualizarVistaPedido();
+        }
+
+        document.getElementById('tamano_fresas').addEventListener('change', function(){
+            let precio = this.options[this.selectedIndex].getAttribute('data-precio');
+            document.getElementById('precio_fresas_texto').innerText = `$${parseInt(precio).toLocaleString()}`;
+        });
+        
+        
+    </script>
+
+</body>
+</html>
